@@ -1,0 +1,56 @@
+/* ---------- рамка, таймер, кнопка ---------- */
+.hack-box {
+  border: 2px solid #00ff41; padding: 14px 16px; margin: 44px 0 26px;
+  box-shadow: 0 0 14px rgba(0, 255, 65, .45), inset 0 0 14px rgba(0, 255, 65, .15);
+}
+.hack-timer { text-align: center; font-weight: bold; letter-spacing: .06em; font-size: clamp(46px, 16vw, 90px); margin: 28px 0 18px; }
+.hack-timer.urgent { color: #ff3b3b; text-shadow: 0 0 14px rgba(255, 59, 59, .85); }
+.hack-threat { margin-bottom: 24px; }
+.hack-btn {
+  display: block; width: 100%; margin: 6px 0 40px; padding: 16px 14px;
+  background: transparent; color: #00ff41; border: 2px solid #00ff41; cursor: pointer;
+  font: inherit; text-shadow: inherit; box-shadow: 0 0 12px rgba(0, 255, 65, .4);
+}
+.hack-btn:active { background: #00ff41; color: #000; text-shadow: none; }
+
+/* ---------- фінальний «жарт» ---------- */
+.hack-joke {
+  position: fixed; inset: 0; z-index: 500; display: grid; place-items: center; padding: 8vw;
+  background: #fff; color: #111; opacity: 0; transition: opacity .8s ease;
+  font: 600 clamp(22px, 6vw, 40px) / 1.4 system-ui, Arial, sans-serif; text-align: center;
+}
+.hack-joke.on { opacity: 1; }
+.hack-joke p { margin: 0; max-width: 20em; opacity: 0; transition: opacity .6s ease; }
+.hack-joke p.on { opacity: 1; }
+
+/* ---------- екрани «фатальних помилок» ---------- */
+.crash { position: fixed; inset: 0; z-index: 400; overflow: hidden; cursor: none; }
+
+/* Windows */
+.crash-windows { background: #0078d7; color: #fff; font-family: "Segoe UI", system-ui, sans-serif; padding: 9vmin; }
+.crash-windows .smile { font-size: 22vmin; font-weight: 300; line-height: 1; margin: 0 0 4vmin; }
+.crash-windows p { font-size: clamp(16px, 4.2vmin, 32px); line-height: 1.35; margin: 0 0 3vmin; max-width: 38em; }
+.crash-windows .row { display: flex; gap: 3vmin; align-items: center; }
+.crash-windows .qr { width: 17vmin; height: 17vmin; min-width: 80px; min-height: 80px; flex: none; background: #fff; padding: 1vmin; }
+.crash-windows .small { font-size: clamp(12px, 2.6vmin, 20px); margin: 0 0 1vmin; }
+
+/* Linux */
+.crash-linux { background: #000; color: #d8d8d8; padding: 3vmin; font: clamp(9px, 1.9vmin, 15px) / 1.35 "Courier New", "Liberation Mono", monospace; }
+.crash-linux pre { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+
+/* iOS (режим відновлення) */
+.crash-ios { background: #000; color: #bdbdbd; display: grid; place-content: center; justify-items: center; gap: 6vmin; font-family: -apple-system, system-ui, sans-serif; }
+.crash-ios svg { width: 34vmin; height: auto; }
+.crash-ios p { margin: 0; font-size: clamp(15px, 3.6vmin, 26px); letter-spacing: .01em; }
+
+/* Android */
+.crash-android { background: #000; color: #e6e6e6; padding: 8vmin; font: clamp(15px, 3.6vmin, 26px) / 1.5 Roboto, system-ui, sans-serif; }
+.crash-android h2 { margin: 0 0 3vmin; color: #ff4b3e; font-size: 1.25em; }
+.crash-android p { margin: 0 0 3vmin; max-width: 32em; }
+.crash-android .link { color: #6aa9ff; text-decoration: underline; }
+.crash-android .foot { position: absolute; left: 0; right: 0; bottom: 5vmin; text-align: center; color: #9a9a9a; font-size: .8em; }
+
+/* macOS */
+.crash-mac { background: #1b1b1b; color: #eee; display: grid; place-content: center; padding: 8vmin; font: clamp(13px, 2.8vmin, 22px) / 1.6 -apple-system, system-ui, sans-serif; text-align: center; }
+.crash-mac p { margin: 0 0 2vmin; }
+.crash-mac p:nth-child(n+3) { color: #a8a8a8; font-size: .85em; }

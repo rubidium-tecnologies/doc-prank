@@ -1,0 +1,52 @@
+/* ---------- заморожування ---------- */
+html.frozen { overflow: hidden; touch-action: none; }
+html.frozen *, html.frozen *::before, html.frozen *::after { transition: none !important; }
+html.frozen .gl-char, html.frozen .gl-overlay::after { animation-play-state: paused; }
+html.frozen .gl-btn { pointer-events: none; }
+
+/* ---------- удари ---------- */
+.quake .doc, .quake .appbar, .quake .tabbar, .quake .gl-btn, .quake .gl-cracks { animation: gl-quake .6s linear both; }
+@keyframes gl-quake {
+  0%   { transform: translate(0, 0) rotate(0); }
+  8%   { transform: translate(calc(var(--q) * -1), calc(var(--q) * .6)) rotate(-.8deg); }
+  16%  { transform: translate(calc(var(--q) * .9), calc(var(--q) * -.7)) rotate(.7deg); }
+  26%  { transform: translate(calc(var(--q) * -.7), calc(var(--q) * -.5)) rotate(-.5deg); }
+  38%  { transform: translate(calc(var(--q) * .5), calc(var(--q) * .6)) rotate(.4deg); }
+  52%  { transform: translate(calc(var(--q) * -.3), calc(var(--q) * .3)) rotate(-.2deg); }
+  70%  { transform: translate(calc(var(--q) * .15), calc(var(--q) * -.2)) rotate(.1deg); }
+  100% { transform: translate(0, 0) rotate(0); }
+}
+
+/* ---------- тріщини ---------- */
+.gl-cracks {
+  position: fixed; inset: 0; z-index: 70; pointer-events: none;
+  filter: drop-shadow(0 0 1px #000) drop-shadow(0 0 5px rgba(255, 255, 255, .35));
+}
+
+/* ---------- уламки ---------- */
+.shard { position: fixed; z-index: 100; overflow: hidden; pointer-events: none; will-change: transform, opacity; }
+.shard-stage { position: absolute; overflow: hidden; isolation: isolate; background: var(--bg); color: var(--text); }
+.shard-stage .appbar { position: absolute; top: 0; left: 0; right: 0; }
+.shard-stage .tabbar,
+.shard-stage .gl-btn,
+.shard-stage .gl-overlay,
+.shard-stage .gl-cracks { position: absolute; }
+
+/* ---------- чорний екран ---------- */
+html.blackout, html.blackout body { background: #000 !important; }
+html.blackout #app,
+html.blackout body > .gl-btn,
+html.blackout body > .gl-overlay,
+html.blackout body > .gl-cracks { visibility: hidden; }
+
+/* ---------- «хакерський» термінал ---------- */
+.hack-term {
+  position: fixed; inset: 0; z-index: 200; overflow-y: auto;
+  padding: calc(18px + env(safe-area-inset-top, 0px)) 16px calc(18px + env(safe-area-inset-bottom, 0px));
+  background: #000; color: #00ff41; text-shadow: 0 0 6px rgba(0, 255, 65, .65);
+  font: clamp(14px, 3.9vw, 19px) / 1.5 "Courier New", "Liberation Mono", monospace;
+  white-space: pre-wrap; overflow-wrap: anywhere;
+}
+.hack-term .line { margin-bottom: 6px; }
+.hack-term .cur { display: inline-block; width: .6em; height: 1.1em; margin-left: 2px; vertical-align: text-bottom; background: #00ff41; animation: gl-blink 1s steps(1) infinite; }
+@keyframes gl-blink { 50% { opacity: 0; } }

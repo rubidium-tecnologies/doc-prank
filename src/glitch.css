@@ -1,0 +1,50 @@
+/* ---------- 1. консольний стиль (на півсекунди) ---------- */
+:root.term { --bg: #000; --text: #00ff41; --bar: #000; --muted: #00b32c; --pill: #032b0e; --line: #00ff41; --head: #021a09; }
+:root.term .appbar,
+:root.term .doc,
+:root.term .tabbar { font-family: "Courier New", "Liberation Mono", monospace; text-shadow: 0 0 6px rgba(0, 255, 65, .7); }
+:root.term .appbar { border-bottom: 1px solid var(--text); }
+:root.term .tabbar { border-top: 1px solid var(--text); border-radius: 0; }
+:root.term .share-btn { border: 1px solid var(--text); border-radius: 0; }
+:root.term .doc p, :root.term .doc li { text-align: left; }
+
+/* ---------- 2. «вірус»: різко, без плавності ---------- */
+.tab-ico { display: grid; }
+.tabbar { flex-wrap: wrap; }
+.appbar .gl-extra { flex: none; }
+
+.glitching .doc { font-family: var(--ff, "Times New Roman", Tinos, "Liberation Serif", serif); transition: none; }
+.glitching .fx-rgb .doc,
+.glitching .fx-rgb .appbar { text-shadow: var(--sx, 2px) 0 #ff0000, calc(var(--sx, 2px) * -1) 0 #00ffff; }
+
+/* символи, що «стрибають» кількома різкими кроками */
+.gl-char { display: inline-block; }
+.gl-char.drift { animation: gl-drift var(--t, 1.5s) steps(3, end) forwards; }
+.gl-char.hide { opacity: 0; }
+@keyframes gl-drift {
+  from { transform: none; opacity: 1; }
+  to { transform: translate(var(--dx), var(--dy)) rotate(var(--r)) scale(var(--s, 1)); opacity: 0; }
+}
+
+/* випадкові кнопки: плоскі, зі зрізаними кутами */
+.gl-btn {
+  position: fixed; z-index: 60; padding: 10px 16px; border: 3px solid #fff; border-radius: 0;
+  font: 700 14px/1 "Courier New", "Liberation Mono", monospace; letter-spacing: .04em; cursor: pointer;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+}
+
+/* гострі осколки та смуги */
+.gl-shard { position: fixed; z-index: 54; pointer-events: none; }
+.gl-slice { position: fixed; z-index: 56; pointer-events: none; }
+
+/* сканлінії */
+.gl-overlay {
+  position: fixed; inset: 0; z-index: 55; pointer-events: none;
+  background: repeating-linear-gradient(to bottom, rgba(0, 0, 0, 0) 0 2px, rgba(255, 0, 60, .10) 2px 3px);
+}
+.gl-overlay::after {
+  content: ""; position: absolute; left: 0; right: 0; height: 60px; top: -60px;
+  background: rgba(255, 255, 255, .10);
+  animation: gl-scan 2.4s steps(12) infinite;
+}
+@keyframes gl-scan { to { transform: translateY(calc(100vh + 120px)); } }
